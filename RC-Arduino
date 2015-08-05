@@ -1,0 +1,141 @@
+
+  /* 
+  
+  Lanuy 6 channel Radio
+  
+  Left switch - Ch6  AUX ON/OFF
+  Right switch - Ch 5 Forward/Reverse
+  Left sideways - Ch4 AUX PWM
+  Left up/down - Ch3 Throttle
+  Right up/down - Ch2 Brakes
+  Right sideways - Ch1 Steering wheel
+  
+  
+Reciever with pins on left
+GND -- + -- Signal
+ 
+  */
+   
+    //Define inputs
+    int Ch6 = A5;
+    int Ch5 = A4;
+    int Ch4 = A3;
+    int Ch3 = A2;
+    int Ch2 = A1;
+    int Ch1 = A0;
+    
+    int Ch6val;
+    int Ch5val;
+    int Ch4val;
+    int Ch3val;
+    int Ch2val;
+    int Ch1val;
+    
+    // Define outputs
+    
+    int OutvalCh6 = 13; //NO PWM
+    int OutvalCh5 = 12; //NO PWM 
+    int OutvalCh4 = 11; //PWM
+    int OutvalCh3 = 10; //PWM
+    int OutvalCh2 = 9; //PWM
+    int OutvalCh1 = 6; //PWM
+
+
+    void setup()
+      {
+        Serial.begin(9600);     //Start serial at baud rate 9600
+        pinMode(Ch6, INPUT);  //Define Ch6 as input
+        pinMode(Ch5, INPUT);  //Define Ch5 as input
+        pinMode(Ch4, INPUT);  //Define Ch4 as input
+        pinMode(Ch3, INPUT);  //Define Ch3 as input
+        pinMode(Ch2, INPUT);  //Define Ch2 as input
+        pinMode(Ch1, INPUT);  //Define Ch1 as input
+        
+        
+        pinMode(OutvalCh6, OUTPUT);    //Define pin OutvalCh6 as Output
+        pinMode(OutvalCh5, OUTPUT);    //Define pin OutvalCh5 as Output
+        pinMode(OutvalCh4, OUTPUT);    //Define pin OutvalCh4 as Output
+        pinMode(OutvalCh3, OUTPUT);    //Define pin OutvalCh3 as Output
+        pinMode(OutvalCh2, OUTPUT);    //Define pin OutvalCh2 as Output
+        pinMode(OutvalCh1, OUTPUT);    //Define pin OutvalCh1 as Output
+
+      }
+
+    void loop()
+      {
+         // Channel 6
+        
+        Ch6val = pulseIn(Ch6, HIGH);                //Read the pulse and store it as Ch6val
+        Serial.println("XXXXXXXXX START XXXXXXXX");                        
+        Serial.println("Ch6");                         //Print channel number
+        Serial.println(Ch6val);                       //Print val to serial monitor
+        //Serial.println("  ");                         //Print a space for your viewing pleasure
+        constrain(Ch6val, 900, 1950);                 //Constrain val to make sure ve only get numbers ranging from 740 to 1830
+        OutvalCh6 = map(Ch6val, 900, 1940, 0, 254);  //Map val to PWM            
+        analogWrite(13, OutvalCh6);                 //Write the PWM value to pin 13
+        Serial.println(OutvalCh6);                  //Print the PWM value to serial
+        Serial.println("  ");                       //Print a space for your viewing pleasure
+        
+        // Channel 5
+        
+        Ch5val = pulseIn(Ch5, HIGH);                //Read the pulse and store it as Ch3val
+        Serial.println("Ch5");                         //Print channel number
+        Serial.println(Ch5val);                       //Print val to serial monitor
+        constrain(Ch5val, 900, 1950);                 //Constrain val to make sure ve only get numbers ranging from 740 to 1830
+        OutvalCh5 = map(Ch5val, 900, 1940, 0, 254);  //Map val to PWM            
+        analogWrite(12, OutvalCh5);               //Write the PWM value to pin 12
+        Serial.println(OutvalCh5);                //Print the PWM value to serial
+        Serial.println("  ");                         //Print a space for your viewing pleasure
+        
+        // Channel 4
+        
+        Ch4val = pulseIn(Ch4, HIGH);                //Read the pulse and store it as Ch3val
+        Serial.println("Ch4");                         //Print channel number
+        Serial.println(Ch4val);                       //Print val to serial monitor
+        //Serial.println("  ");                         //Print a space for your viewing pleasure
+        constrain(Ch4val, 905, 1940);                 //Constrain val to make sure ve only get numbers ranging from 740 to 1830
+        OutvalCh4 = map(Ch4val, 905, 1940, 0, 254);  //Map val to PWM            
+        analogWrite(11, OutvalCh4);               //Write the PWM value to pin 11
+        Serial.println(OutvalCh4);                //Print the PWM value to serial
+        Serial.println("  ");                         //Print a space for your viewing pleasure
+         
+       
+        // Channel 3
+        
+        Ch3val = pulseIn(Ch3, HIGH);                //Read the pulse and store it as Ch3val
+        Serial.println("Ch3");                         //Print channel number
+        Serial.println(Ch3val);                       //Print val to serial monitor
+        //Serial.print("  ");                         //Print a space for your viewing pleasure
+        constrain(Ch3val, 905, 1950);                 //Constrain val to make sure ve only get numbers ranging from 740 to 1830
+        OutvalCh3 = map(Ch3val, 905, 1950, 0, 254);  //Map val to PWM            
+        analogWrite(10, OutvalCh3);               //Write the PWM value to pin 10
+        Serial.println(OutvalCh3);                //Print the PWM value to serial
+        Serial.println("  ");                         //Print a space for your viewing pleasure
+
+        // Channel 2
+        
+        Ch2val = pulseIn(Ch2, HIGH);                //Read the pulse and store it as Ch3val
+        Serial.println("Ch2");                         //Print channel number
+        Serial.println(Ch2val);                       //Print val to serial monitor
+        //Serial.println("  ");                         //Print a space for your viewing pleasure
+        constrain(Ch2val, 905, 1950);                 //Constrain val to make sure ve only get numbers ranging from 740 to 1830
+        OutvalCh2 = map(Ch2val, 905, 1950, 0, 254);  //Map val to PWM            
+        analogWrite(9, OutvalCh2);               //Write the PWM value to pin 11
+        Serial.println(OutvalCh2);                //Print the PWM value to serial
+        Serial.println("  ");                         //Print a space for your viewing pleasure
+        
+        // Channel 1
+        
+        Ch1val = pulseIn(Ch1, HIGH);                //Read the pulse and store it as Ch3val
+        Serial.println("Ch1");                         //Print channel number
+        Serial.println(Ch1val);                       //Print val to serial monitor
+        //Serial.println("  ");                         //Print a space for your viewing pleasure
+        constrain(Ch1val, 905, 1950);                 //Constrain val to make sure ve only get numbers ranging from 740 to 1830
+        OutvalCh1 = map(Ch1val, 905, 1950, 0, 254);  //Map val to PWM            
+        analogWrite(6, OutvalCh1);               //Write the PWM value to pin 11
+        Serial.println(OutvalCh1);                //Print the PWM value to serial
+        Serial.println("  ");                         //Print a space for your viewing pleasure
+        Serial.println("XXXXXXXXX END XXXXXXXX");                         //Print channel number
+ delay(1000);    
+   
+  }
