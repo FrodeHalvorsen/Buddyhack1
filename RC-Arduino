@@ -135,7 +135,7 @@ GND -- + -- Signal
         analogWrite(6, OutvalCh1);               //Write the PWM value to pin 11
         Serial.println(OutvalCh1);                //Print the PWM value to serial
         Serial.println("  ");                         //Print a space for your viewing pleasure
-        Serial.println("XXXXXXXXX END XXXXXXXX");                         //Print channel number
+        Serial.println("XXXXXXXXX END XXXXXXXX");                         
  delay(1000);    
    
   }
